@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: calc(16px + 0.2vw);
+  background-color: rgb(210, 208, 208);
+}
+
+.main-wrapper {
+  margin: 2rem auto;
+  padding: 2rem;
+  border: none;
+  border-radius: 1rem;
+  width: min(80%, 30rem);
+  background-color: #4f32ff;
+  color: whitesmoke;
+}
+
+section#search {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: center;
+}
+
+section#search #weather-searching-form {
+  display: flex;
+  align-items: center;
+}
+
+section#search img {
+  width: 100%;
+}
+
+section#search #weather-searchbar {
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+section#search #weather-search-button {
+  background-color: rgba(75, 75, 181, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem 0.5rem 0.4rem 0.5rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+section#search #weather-search-button:hover {
+  background-color: rgba(75, 75, 181, 0.3);
+}
+
+section#search #weather-search-button img {
+  width: 2.1rem;
+}
+
+#weather-data {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#weather-details {
+  width: 100%;
+}
+
+#weather-icon {
+  width: 65%;
+}
+
+#weather-temperature {
+  margin-top: 1rem;
+  font-size: 4.5rem;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+}
+
+#weather-temperature span {
+  font-size: 1.5rem;
+  position: absolute;
+}
+
+#weather-description {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+#weather-description + div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+
+#weather-humidity,
+#weather-wind-speed {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  place-items: center;
+  font-size: 1.4rem;
+  column-gap: 0.5rem;
+  font-weight: 500;
+}
+
+#weather-humidity img,
+#weather-wind-speed img {
+  width: 100%;
+}
+
+#weather-humidity p:nth-child(2),
+#weather-wind-speed p:nth-child(2) {
+  font-size: 1rem;
+  font-weight: normal;
+  margin-top: 0.1rem;
+}
