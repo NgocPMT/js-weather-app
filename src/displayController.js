@@ -7,6 +7,7 @@ import loadingGif from "./img/loading.gif";
 const renderUI = async (location) => {
   const weatherContent = document.querySelector("#weather-data");
   const loadingModal = document.querySelector("dialog#loading");
+  weatherContent.className = "hidden";
   loadingModal.innerHTML = `
     <div class="loading-content">
       <img src=${loadingGif} alt="loading"/>
@@ -20,6 +21,7 @@ const renderUI = async (location) => {
     weatherContent.innerHTML = `<p class="error-message">We didn't find any data of the location you entered. Please try another location</p>`;
   }
   loadingModal.close();
+  weatherContent.className = "";
 };
 
 const handleSearch = () => {

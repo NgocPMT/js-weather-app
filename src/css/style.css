@@ -94,6 +94,12 @@ section#search #weather-search-button img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.8s ease-out;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-5rem);
 }
 
 #weather-details {
@@ -103,6 +109,8 @@ section#search #weather-search-button img {
 #weather-icon {
   margin-top: 1rem;
   width: 65%;
+  height: 40vh;
+  animation: fade-in 1.5s linear;
 }
 
 #weather-temperature {
@@ -111,6 +119,7 @@ section#search #weather-search-button img {
   font-weight: bold;
   position: relative;
   text-align: center;
+  animation: fade-in 1.5s linear;
 }
 
 #weather-temperature span {
@@ -121,6 +130,7 @@ section#search #weather-search-button img {
 #weather-description {
   font-size: 1.5rem;
   text-align: center;
+  animation: fade-in 1.5s linear;
 }
 
 #weather-description + div {
@@ -138,6 +148,7 @@ section#search #weather-search-button img {
   font-size: 1.4rem;
   column-gap: 0.5rem;
   font-weight: 500;
+  animation: fade-in 1.5s linear;
 }
 
 #weather-humidity img,
@@ -175,4 +186,26 @@ section#search #weather-search-button img {
   font-size: 1.5rem;
   font-weight: bold;
   color: rgb(246, 255, 0);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0.6;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateY(-50rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
