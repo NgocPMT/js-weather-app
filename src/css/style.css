@@ -2,45 +2,58 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  outline: 2px solid red;
 }
 
 html,
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  font-size: calc(16px + 0.2vw);
+  font-size: calc(10px + 0.4vw);
   background-color: rgb(210, 208, 208);
+}
+
+main {
+  display: grid;
+  place-content: center;
+  height: 100vh;
 }
 
 .main-wrapper {
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 2.75rem 2rem;
   border: none;
   border-radius: 1rem;
-  width: min(80%, 30rem);
+  width: min(85vmin, 500px);
   background-color: #4f32ff;
   color: whitesmoke;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 section#search {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
+  display: flex;
   align-items: center;
 }
 
 section#search #weather-searching-form {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 
 section#search img {
   width: 100%;
+  flex: 0 1 2.5rem;
 }
 
 section#search #weather-searchbar {
   background-color: transparent;
   color: whitesmoke;
-  font-size: 1.5rem;
-  padding: 0.5rem;
+  font-size: calc(0.75rem + 0.75vw);
+  font-weight: bolder;
+  padding-left: 0.5rem;
   border: none;
   outline: none;
   border-radius: 1rem;
