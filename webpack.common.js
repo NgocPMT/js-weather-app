@@ -24,7 +24,7 @@ module.exports = {
         use: ["html-loader"],
       },
       {
-        test: /\.(png|jpg|svg)$/i,
+        test: /\.(png|jpg|svg|gif)$/i,
         type: "asset/resource",
       },
     ],
