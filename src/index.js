@@ -1,3 +1,3 @@
-import renderUI from "./displayController.js";
+import handleSearch from "./displayController.js";
 
-renderUI();
+handleSearch();

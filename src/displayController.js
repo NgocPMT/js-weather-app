@@ -1,17 +1,13 @@
-import getWeather from "./fetching";
+import getWeather from "./fetchController";
 import "./css/style.css";
-import locationIcon from "./img/location.svg";
-import searchIcon from "./img/search.svg";
-import partlyCloudIcon from "./img/partly-cloud.svg";
 import humidityIcon from "./img/humidity.svg";
 import windSpeedIcon from "./img/wind-speed.svg";
 
-export default function renderUI() {
-  const mainContent = document.querySelector("#main-content");
-  const content = getUI();
-  mainContent.innerHTML = content;
-  handleSearch();
-}
+const renderUI = async (location) => {
+  const weatherContent = document.querySelector("#weather-data");
+  const content = await getUI(location);
+  weatherContent.innerHTML = content;
+};
 
 const handleSearch = () => {
   const weatherForm = document.querySelector("#weather-searching-form");
@@ -20,54 +16,46 @@ const handleSearch = () => {
     const location = document.querySelector("#weather-searchbar").value;
 
     try {
-      const data = await getWeather(location);
-      console.log(data);
+      renderUI(location);
     } catch (err) {
       console.log(err);
     }
   });
 };
 
-const getUI = () => {
+const getUI = async (location) => {
+  const data = await getWeather(location);
+  const fTemperature = data.currentConditions.temp;
+  const cTemperature = Math.round(((fTemperature - 32) * 5) / 9);
+  const description = data.currentConditions.conditions;
+  const humidity = data.currentConditions.humidity;
+  const windSpeed = data.currentConditions.windspeed;
+  const icons = require.context("./img", false, /\.svg$/);
+  const weatherIcon = icons(`./${data.currentConditions.icon}.svg`);
   return `
-  <div class="main-wrapper">
-      <section id="search">
-        <img src=${locationIcon} />
-        <form id="weather-searching-form">
-          <input
-            type="search"
-            id="weather-searchbar"
-            name="weather-location"
-            required
-          />
-          <button id="weather-search-button">
-            <img src=${searchIcon} />
-          </button>
-        </form>
-      </section>
-      <section id="weather-data">
-        <img id="weather-icon" src=${partlyCloudIcon} alt="" />
+
+        <img id="weather-icon" src=${weatherIcon} alt="" />
         <div id="weather-details">
-          <p id="weather-temperature">0<span>&deg;C</span></p>
-          <p id="weather-description">Broken clouds</p>
+          <p id="weather-temperature">${cTemperature}<span>&deg;C</span></p>
+          <p id="weather-description">${description}</p>
           <div>
             <div id="weather-humidity">
               <img src=${humidityIcon} alt="" />
               <div id="humidity-details">
-                <p>88%</p>
+                <p>${humidity}%</p>
                 <p>Humidity</p>
               </div>
             </div>
             <div id="weather-wind-speed">
               <img src=${windSpeedIcon} alt="" />
               <div id="wind-speed-details">
-                <p>0Km/h</p>
+                <p>${windSpeed}Km/h</p>
                 <p>Wind Speed</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
 `;
 };
+
+export default handleSearch;

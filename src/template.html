@@ -13,6 +13,24 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <main id="main-content"></main>
+    <main id="main-content">
+      <div class="main-wrapper">
+        <section id="search">
+          <img src="./img/location.svg" />
+          <form id="weather-searching-form">
+            <input
+              type="search"
+              id="weather-searchbar"
+              name="weather-location"
+              required
+            />
+            <button id="weather-search-button">
+              <img src="./img/search.svg" />
+            </button>
+          </form>
+        </section>
+        <section id="weather-data"></section>
+      </div>
+    </main>
   </body>
 </html>
