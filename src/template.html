@@ -6,16 +6,46 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div class="body-wrapper">
-      <form id="weather-searching-form">
-        <input
-          type="search"
-          id="weather-searchbar"
-          name="weather-location"
-          required
-        />
-        <button id="weather-search-button">Search</button>
-      </form>
-    </div>
+    <main>
+      <div class="main-wrapper">
+        <section id="search">
+          <img src="./img/location.svg" />
+          <form id="weather-searching-form">
+            <input
+              type="search"
+              id="weather-searchbar"
+              name="weather-location"
+              required
+            />
+            <button id="weather-search-button">
+              <img src="./img/search.svg" />
+            </button>
+          </form>
+        </section>
+        <section id="weather-data">
+          <img id="weather-icon" src="./img/partly-cloud.svg" alt="" />
+          <div id="weather-details">
+            <p id="weather-tempature">0<span>&deg;C</span></p>
+            <p id="weather-description">Broken clouds</p>
+            <div>
+              <div id="weather-humidity">
+                <img src="img/humidity.svg" alt="" />
+                <div id="humidity-details">
+                  <p>88%</p>
+                  <p>Humidity</p>
+                </div>
+              </div>
+              <div id="weather-wind-speed">
+                <img src="img/wind-speed.svg" alt="" />
+                <div id="wind-speed-details">
+                  <p>0Km/h</p>
+                  <p>Wind Speed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   </body>
 </html>
