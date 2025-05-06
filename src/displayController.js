@@ -13,8 +13,12 @@ const renderUI = async (location) => {
     </div>
   `;
   loadingModal.showModal();
-  const content = await getUI(location);
-  weatherContent.innerHTML = content;
+  try {
+    const content = await getUI(location);
+    weatherContent.innerHTML = content;
+  } catch (err) {
+    weatherContent.innerHTML = `<p class="error-message">We didn't find any data of the location you entered. Please try another location</p>`;
+  }
   loadingModal.close();
 };
 
