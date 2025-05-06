@@ -43,7 +43,9 @@ section#search #weather-searchbar {
   padding: 0.5rem;
   border: none;
   outline: none;
+  border-radius: 1rem;
   flex: 1;
+  text-transform: uppercase;
 }
 
 section#search #weather-search-button {
