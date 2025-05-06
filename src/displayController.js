@@ -2,11 +2,20 @@ import getWeather from "./fetchController";
 import "./css/style.css";
 import humidityIcon from "./img/humidity.svg";
 import windSpeedIcon from "./img/wind-speed.svg";
+import loadingGif from "./img/loading.gif";
 
 const renderUI = async (location) => {
   const weatherContent = document.querySelector("#weather-data");
+  const loadingModal = document.querySelector("dialog#loading");
+  loadingModal.innerHTML = `
+    <div class="loading-content">
+      <img src=${loadingGif} alt="loading"/>
+    </div>
+  `;
+  loadingModal.showModal();
   const content = await getUI(location);
   weatherContent.innerHTML = content;
+  loadingModal.close();
 };
 
 const handleSearch = () => {
