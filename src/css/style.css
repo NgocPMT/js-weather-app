@@ -61,6 +61,10 @@ section#search #weather-searchbar {
   text-transform: uppercase;
 }
 
+section#search #weather-searchbar::placeholder {
+  color: rgb(187, 187, 187);
+}
+
 section#search #weather-searchbar:focus {
   background-color: whitesmoke;
   color: rgba(75, 75, 181, 0.8);
