@@ -24,12 +24,14 @@ main {
   border: none;
   border-radius: 2rem;
   width: min(85vmin, 500px);
+  height: 7rem;
   background-color: #4f32ff;
   color: whitesmoke;
 
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  transition: all 1s linear;
 }
 
 section#search {
@@ -62,7 +64,7 @@ section#search #weather-searchbar {
 }
 
 section#search #weather-searchbar::placeholder {
-  color: rgb(187, 187, 187);
+  color: rgba(180, 180, 229, 0.8);
 }
 
 section#search #weather-searchbar:focus {
@@ -91,15 +93,16 @@ section#search #weather-search-button img {
 
 #weather-data {
   width: 100%;
+  height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.8s ease-out;
+  transition: all 1s linear;
 }
 
-.hidden {
+#weather-data.hidden {
   opacity: 0;
-  transform: translateY(-5rem);
+  transform: translateY(-10rem);
 }
 
 #weather-details {

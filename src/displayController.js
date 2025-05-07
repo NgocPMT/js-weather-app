@@ -5,9 +5,12 @@ import windSpeedIcon from "./img/wind-speed.svg";
 import loadingGif from "./img/loading.gif";
 
 const renderUI = async (location) => {
+  const weatherCard = document.querySelector(".main-wrapper");
   const weatherContent = document.querySelector("#weather-data");
   const loadingModal = document.querySelector("dialog#loading");
   weatherContent.className = "hidden";
+  weatherCard.style.height = "min(85vh, 48.5rem)";
+  weatherContent.style.height = "min(75vh, 42rem)";
   loadingModal.innerHTML = `
     <div class="loading-content">
       <img src=${loadingGif} alt="loading"/>
