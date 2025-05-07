@@ -32,7 +32,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  transition: all 1s linear;
+  transition: height 1s linear;
 }
 
 .hidden {
@@ -224,7 +224,7 @@ section#search #weather-search-button img {
   overflow: hidden;
   border-radius: 50%;
   margin: 0 auto;
-  top: 25%;
+  top: calc(50% - 15vw);
   border: none;
 }
 
