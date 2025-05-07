@@ -3,6 +3,7 @@ import "./css/style.css";
 import humidityIcon from "./img/humidity.svg";
 import windSpeedIcon from "./img/wind-speed.svg";
 import loadingGif from "./img/loading.gif";
+import { format } from "date-fns";
 
 let isFirstRendered = true;
 let isCalcius = true;
@@ -55,7 +56,11 @@ const renderUI = async (location) => {
       });
       weatherTemp.addEventListener("click", async () => {
         isCalcius = !isCalcius;
-        updateUI(weatherData.currentConditions);
+        if (dateIndex === 0) {
+          updateUI(weatherData.currentConditions);
+          return;
+        }
+        updateUI(weatherData.days[dateIndex]);
       });
       isFirstRendered = false;
     } else {
@@ -131,7 +136,9 @@ const updateUI = (data) => {
   }
 
   console.log("updating UI...");
-  const date = data.datetime;
+
+  const date =
+    dateIndex === 0 ? "Right Now" : format(data.datetime, "MMMMMMMM do");
   const fTemperature = data.temp;
   const cTemperature = Math.round(((fTemperature - 32) * 5) / 9);
   const description = data.conditions;
