@@ -117,12 +117,25 @@ section#search #weather-search-button img {
 }
 
 #weather-temperature {
+  width: auto;
   margin-top: 1rem;
   font-size: 4.5rem;
   font-weight: bold;
   position: relative;
   text-align: center;
   animation: fade-in 1.5s linear;
+  cursor: pointer;
+  transition: all 0.3s;
+  justify-self: center;
+}
+
+#weather-temperature:hover,
+#weather-temperature:focus {
+  opacity: 0.8;
+}
+
+#weather-temperature:active {
+  transform: translateY(0.75rem);
 }
 
 #weather-temperature span {

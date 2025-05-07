@@ -5,6 +5,8 @@ import windSpeedIcon from "./img/wind-speed.svg";
 import loadingGif from "./img/loading.gif";
 
 let isFirstRendered = true;
+let isCalcius = true;
+let weatherData = null;
 
 const renderUI = async (location) => {
   const weatherCard = document.querySelector(".main-wrapper");
@@ -21,11 +23,17 @@ const renderUI = async (location) => {
   loadingModal.showModal();
   try {
     if (isFirstRendered) {
-      const content = await getUI(location);
+      await getData(location);
+      const content = getUI(weatherData);
       weatherContent.innerHTML = content;
+      const weatherTemp = document.querySelector("#weather-temperature");
+      weatherTemp.addEventListener("click", async () => {
+        isCalcius = !isCalcius;
+        updateUI(weatherData);
+      });
       isFirstRendered = false;
     } else {
-      await updateUI(location);
+      updateUI(weatherData);
     }
   } catch (err) {
     console.log(err);
@@ -49,9 +57,12 @@ const handleEvents = () => {
   });
 };
 
-const updateUI = async (location) => {
+const getData = async (location) => {
+  weatherData = await getWeather(location);
+};
+
+const updateUI = (data) => {
   console.log("updating UI...");
-  const data = await getWeather(location);
   const fTemperature = data.currentConditions.temp;
   const cTemperature = Math.round(((fTemperature - 32) * 5) / 9);
   const description = data.currentConditions.conditions;
@@ -66,15 +77,16 @@ const updateUI = async (location) => {
   const weatherHumidityEl = document.querySelector("#humidity-details>p");
   const weatherWindSpeedEl = document.querySelector("#wind-speed-details>p");
   weatherIconEl.src = weatherIcon;
-  weatherTempEl.textContent = cTemperature;
+  weatherTempEl.innerHTML = isCalcius
+    ? `${cTemperature}<span>&deg;C<span>`
+    : `${fTemperature}<span>&deg;F<span>`;
   weatherDescriptionEl.textContent = description;
-  weatherHumidityEl.textContent = humidity;
-  weatherWindSpeedEl.textContent = windSpeed;
+  weatherHumidityEl.textContent = humidity + "%";
+  weatherWindSpeedEl.textContent = windSpeed + "Km/h";
 };
 
-const getUI = async (location) => {
+const getUI = (data) => {
   console.log("getting UI...");
-  const data = await getWeather(location);
   const fTemperature = data.currentConditions.temp;
   const cTemperature = Math.round(((fTemperature - 32) * 5) / 9);
   const description = data.currentConditions.conditions;
@@ -86,7 +98,7 @@ const getUI = async (location) => {
 
         <img id="weather-icon" src=${weatherIcon} alt="" />
         <div id="weather-details">
-          <p id="weather-temperature">${cTemperature}<span>&deg;C</span></p>
+          <p id="weather-temperature">${cTemperature}<span id="temp-degree">&deg;C</span></p>
           <p id="weather-description">${description}</p>
           <div>
             <div id="weather-humidity">
