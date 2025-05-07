@@ -4,6 +4,8 @@ import humidityIcon from "./img/humidity.svg";
 import windSpeedIcon from "./img/wind-speed.svg";
 import loadingGif from "./img/loading.gif";
 
+let isFirstRendered = true;
+
 const renderUI = async (location) => {
   const weatherCard = document.querySelector(".main-wrapper");
   const weatherContent = document.querySelector("#weather-data");
@@ -18,16 +20,22 @@ const renderUI = async (location) => {
   `;
   loadingModal.showModal();
   try {
-    const content = await getUI(location);
-    weatherContent.innerHTML = content;
+    if (isFirstRendered) {
+      const content = await getUI(location);
+      weatherContent.innerHTML = content;
+      isFirstRendered = false;
+    } else {
+      await updateUI(location);
+    }
   } catch (err) {
+    console.log(err);
     weatherContent.innerHTML = `<p class="error-message">We didn't find any data of the location you entered. Please try another location</p>`;
   }
   loadingModal.close();
   weatherContent.className = "";
 };
 
-const handleSearch = () => {
+const handleEvents = () => {
   const weatherForm = document.querySelector("#weather-searching-form");
   weatherForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -41,7 +49,31 @@ const handleSearch = () => {
   });
 };
 
+const updateUI = async (location) => {
+  console.log("updating UI...");
+  const data = await getWeather(location);
+  const fTemperature = data.currentConditions.temp;
+  const cTemperature = Math.round(((fTemperature - 32) * 5) / 9);
+  const description = data.currentConditions.conditions;
+  const humidity = data.currentConditions.humidity;
+  const windSpeed = data.currentConditions.windspeed;
+  const icons = require.context("./img", false, /\.svg$/);
+  const weatherIcon = icons(`./${data.currentConditions.icon}.svg`);
+
+  const weatherIconEl = document.querySelector("#weather-icon");
+  const weatherTempEl = document.querySelector("#weather-temperature");
+  const weatherDescriptionEl = document.querySelector("#weather-description");
+  const weatherHumidityEl = document.querySelector("#humidity-details>p");
+  const weatherWindSpeedEl = document.querySelector("#wind-speed-details>p");
+  weatherIconEl.src = weatherIcon;
+  weatherTempEl.textContent = cTemperature;
+  weatherDescriptionEl.textContent = description;
+  weatherHumidityEl.textContent = humidity;
+  weatherWindSpeedEl.textContent = windSpeed;
+};
+
 const getUI = async (location) => {
+  console.log("getting UI...");
   const data = await getWeather(location);
   const fTemperature = data.currentConditions.temp;
   const cTemperature = Math.round(((fTemperature - 32) * 5) / 9);
@@ -76,4 +108,4 @@ const getUI = async (location) => {
 `;
 };
 
-export default handleSearch;
+export default handleEvents;

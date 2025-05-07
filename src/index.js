@@ -1,3 +1,3 @@
-import handleSearch from "./displayController.js";
+import handleEvents from "./displayController.js";
 
-handleSearch();
+handleEvents();
