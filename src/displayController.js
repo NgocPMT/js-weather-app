@@ -33,6 +33,7 @@ const renderUI = async (location) => {
       });
       isFirstRendered = false;
     } else {
+      await getData(location);
       updateUI(weatherData);
     }
   } catch (err) {
@@ -98,9 +99,9 @@ const getUI = (data) => {
   const icons = require.context("./img", false, /\.svg$/);
   const weatherIcon = icons(`./${data.currentConditions.icon}.svg`);
   return `
-
         <img id="weather-icon" src=${weatherIcon} alt="" />
         <div id="weather-details">
+          <p id="weather-date">Today</p>
           <p id="weather-temperature">${cTemperature}<span id="temp-degree">&deg;C</span></p>
           <p id="weather-description">${description}</p>
           <div>

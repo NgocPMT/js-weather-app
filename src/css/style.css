@@ -35,9 +35,9 @@ main {
   transition: all 1s linear;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 .prev,
 .next {
@@ -121,6 +121,15 @@ section#search #weather-search-button img {
   width: 2.1rem;
 }
 
+#weather-date {
+  position: absolute;
+  top: -7.5%;
+  text-align: center;
+  width: 100%;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 #weather-data {
   width: 100%;
   height: 0;
@@ -137,13 +146,14 @@ section#search #weather-search-button img {
 
 #weather-details {
   width: 100%;
+  position: relative;
 }
 
 #weather-icon {
   margin-top: 1rem;
   width: 65%;
   height: 40vh;
-  animation: fade-in 1.5s linear;
+  animation: bouncing 5s infinite linear;
 }
 
 #weather-temperature {
@@ -153,7 +163,6 @@ section#search #weather-search-button img {
   font-weight: bold;
   position: relative;
   text-align: center;
-  animation: fade-in 1.5s linear;
   cursor: pointer;
   transition: all 0.3s;
   justify-self: center;
@@ -176,7 +185,6 @@ section#search #weather-search-button img {
 #weather-description {
   font-size: 1.5rem;
   text-align: center;
-  animation: fade-in 1.5s linear;
 }
 
 #weather-description + div {
@@ -194,7 +202,6 @@ section#search #weather-search-button img {
   font-size: 1.4rem;
   column-gap: 0.5rem;
   font-weight: 500;
-  animation: fade-in 1.5s linear;
 }
 
 #weather-humidity img,
@@ -234,14 +241,18 @@ section#search #weather-search-button img {
   color: rgb(246, 255, 0);
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0.6;
-    transform: translateY(0.5rem);
-  }
-  to {
+@keyframes bouncing {
+  0% {
+    transform: translateY(0.25rem);
     opacity: 1;
-    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.75rem);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0.25rem);
+    opacity: 1;
   }
 }
 
