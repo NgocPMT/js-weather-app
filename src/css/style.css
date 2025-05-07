@@ -28,10 +28,40 @@ main {
   background-color: #4f32ff;
   color: whitesmoke;
 
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   transition: all 1s linear;
+}
+
+/* .hidden {
+  display: none;
+} */
+
+.prev,
+.next {
+  position: absolute;
+  top: calc(50%-5rem);
+  font-size: 5rem;
+  cursor: pointer;
+  color: rgb(239, 238, 238);
+  padding: 0.5rem 1.25rem;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(75, 75, 181, 0.5);
+}
+
+.prev {
+  left: 0;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 1rem 0rem 0rem 1rem;
 }
 
 section#search {

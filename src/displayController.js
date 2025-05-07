@@ -58,7 +58,10 @@ const handleEvents = () => {
 };
 
 const getData = async (location) => {
+  console.log("getting data...");
   weatherData = await getWeather(location);
+  console.log("done");
+  console.log(weatherData);
 };
 
 const updateUI = (data) => {
