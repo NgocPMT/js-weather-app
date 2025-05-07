@@ -2,6 +2,7 @@ import getWeather from "./fetchController";
 import "./css/style.css";
 import humidityIcon from "./img/humidity.svg";
 import windSpeedIcon from "./img/wind-speed.svg";
+import notFoundIcon from "./img/not-found.png";
 import loadingGif from "./img/loading.gif";
 import { format } from "date-fns";
 
@@ -70,7 +71,14 @@ const renderUI = async (location) => {
     }
   } catch (err) {
     console.log(err);
-    weatherContent.innerHTML = `<p class="error-message">We didn't find any data of the location you entered. Please try another location</p>`;
+    weatherContent.innerHTML = `
+    <img src=${notFoundIcon} alt="not found" id="not-found-icon"/>
+    <p class="error-message">We didn't find any data of the location you entered. Please try another location</p>`;
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    prevButton.className = "prev hidden";
+    nextButton.className = "next hidden";
+    isFirstRendered = true;
   }
   loadingModal.close();
   weatherContent.className = "";

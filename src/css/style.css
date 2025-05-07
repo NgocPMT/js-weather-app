@@ -20,7 +20,7 @@ main {
 
 .main-wrapper {
   margin: 1rem auto;
-  padding: 2rem 2rem 2.75rem 2rem;
+  padding: 2rem 2rem;
   border: none;
   border-radius: 2rem;
   width: min(85vmin, 500px);
@@ -240,6 +240,12 @@ section#search #weather-search-button img {
   font-size: 1.5rem;
   font-weight: bold;
   color: rgb(246, 255, 0);
+}
+
+#not-found-icon {
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  width: 35%;
 }
 
 @keyframes bouncing {
