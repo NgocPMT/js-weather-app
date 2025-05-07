@@ -9,7 +9,7 @@ let isFirstRendered = true;
 let isCalcius = true;
 let weatherData = null;
 let dateIndex = 0;
-const forecastDates = 3;
+const forecastDates = 5;
 
 const renderUI = async (location) => {
   const weatherCard = document.querySelector(".main-wrapper");
