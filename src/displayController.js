@@ -7,6 +7,7 @@ import loadingGif from "./img/loading.gif";
 import { format } from "date-fns";
 
 let isFirstRendered = true;
+let isAttachedListeners = false;
 let isCalcius = true;
 let weatherData = null;
 let dateIndex = 0;
@@ -49,20 +50,23 @@ const renderUI = async (location) => {
       prevButton.className = "prev hidden";
       nextButton.className = "next";
 
-      prevButton.addEventListener("click", async () => {
-        await prevDay();
-      });
-      nextButton.addEventListener("click", async () => {
-        await nextDay();
-      });
-      weatherTemp.addEventListener("click", async () => {
-        isCalcius = !isCalcius;
-        if (dateIndex === 0) {
-          updateUI(weatherData.currentConditions);
-          return;
-        }
-        updateUI(weatherData.days[dateIndex]);
-      });
+      if (!isAttachedListeners) {
+        prevButton.addEventListener("click", async () => {
+          await prevDay();
+        });
+        nextButton.addEventListener("click", async () => {
+          await nextDay();
+        });
+        weatherTemp.addEventListener("click", async () => {
+          isCalcius = !isCalcius;
+          if (dateIndex === 0) {
+            updateUI(weatherData.currentConditions);
+            return;
+          }
+          updateUI(weatherData.days[dateIndex]);
+        });
+        isAttachedListeners = true;
+      }
       isFirstRendered = false;
     } else {
       await getData(location);
