@@ -102,12 +102,13 @@ const prevDay = async () => {
 
 const handleEvents = () => {
   const weatherForm = document.querySelector("#weather-searching-form");
+  const searchBar = document.querySelector("#weather-searchbar");
   weatherForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const location = document.querySelector("#weather-searchbar").value;
-
+    const location = searchBar.value;
     try {
       renderUI(location);
+      searchBar.placeholder = location;
     } catch (err) {
       console.log(err);
     }
